@@ -1,15 +1,28 @@
-<script lang="ts">
+<script setup>
+  import { defineComponent } from "vue";
+
+  defineComponent({
+    name:'App',
+    components:{
+      
+    }
+  })
 
 </script>
 
 <template>
+  
+  
+  
   <v-app>
     <v-btn icon>
       <v-icon>mdi-home</v-icon>
     </v-btn>
   </v-app>
-</template>
 
+
+  
+</template>
 
 <style scoped>
 .logo {
