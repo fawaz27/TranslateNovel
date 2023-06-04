@@ -3,7 +3,7 @@ console.log(url);
 import axios from 'axios';
 const api = axios.create({
     withCredentials: true,
-    baseURL: url
+    baseURL: process.env
 }) 
 
 export default api;
