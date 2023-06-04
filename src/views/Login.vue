@@ -119,7 +119,7 @@ export default {
 			try {
 				await this.$store.dispatch('signIn',this.body);
 				if(this.status == 'Success Login'){
-					this.$cookies.set("user",this.user,3600);
+					//this.$cookies.set("user",this.user,3600);
 					this.$router.push('/');
 				}		
 			} catch (error) {
