@@ -53,6 +53,9 @@ export default createStore({
         getCookie (state) {
             return state.cookies;
         },
+        getGenres (state) {
+            return state.genres;
+        },
         getUser (state) {
             return state.user;
         },

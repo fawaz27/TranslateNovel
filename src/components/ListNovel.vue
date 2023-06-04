@@ -139,7 +139,7 @@
 						</h2>
 						</div>
 						<ul class="ul-list3">
-							<li class="l1" v-for="(item,index) in genres" :key="index">
+							<li class="l1" v-for="(item,index) in this.getGenres()" :key="index">
 							<router-link :to="`/genres/${item}`" class="con text-capitalize" :title="item" >
 								<span class="glyphicon glyphicon-ok-sign"></span>
 								<font style="vertical-align: inherit;">{{item}}</font>
@@ -176,113 +176,28 @@ import Pagination from './Pagination.vue'
             default: 1,
         },
     },
+	async beforeCreate(){
+		try {
+			await Promise.all([
+				this.$store.dispatch('getGenres')
+			]);		
+		} catch (error) {
+			console.error(error);
+		}
+	},
   
     data: () => ({
-		genresList : [
-			{
-				name: "Action",
-				link: "/genres/Action/"
-			},
-			{
-				name: "Adulte",
-				link: "/genres/Adult/"
-			},
-			{
-				name: "Aventure",
-				link: "/genres/Adventure/"
-			},
-			{
-				name: "La comédie",
-				link: "/genres/Comedy/"
-			},
-			{
-				name: "Drame",
-				link: "/genres/Drama/"
-			},
-			{
-				name: "ecchi",
-				link: "/genres/Ecchi/"
-			},
-			{
-				name: "Fantaisie",
-				link: "/genres/Fantasy/"
-			},
-			{
-				name: "Plongeur de genre",
-				link: "/genres/Gender+Bender/"
-			},
-			{
-				name: "Harem",
-				link: "/genres/Harem/"
-			},
-			{
-				name: "Historique",
-				link: "/genres/Historical/"
-			},
-			{
-				name: "Horreur",
-				link: "/genres/Horror/"
-			},
-			{
-				name: "Joséi",
-				link: "/genres/Josei/"
-			},
-			{
-				name: "Jeu",
-				link: "/genres/Game/"
-			},
-			{
-				name: "Arts martiaux",
-				link: "/genres/Martial+Arts/"
-			},
-			{
-				name: "Mature",
-				link: "/genres/Mature/"
-			},
-			{
-				name: "Méca",
-				link: "/genres/Mecha/"
-			},
-			{
-				name: "Mystère",
-				link: "/genres/Mystery/"
-			},
-			{
-				name: "Psychologique",
-				link: "/genres/Psychological/"
-			},
-			{
-				name: "Romance",
-				link: "/genres/Romance/"
-			},
-			{
-				name: "Vie scolaire",
-				link: "/genres/School+Life/"
-			},
-			{
-				name: "Science-fiction",
-				link: "/genres/Sci-fi/"
-			},
-			{
-				name: "Le sien",
-				link: "/genres/Seinen/"
-			},
-			{
-				name: "Shojo",
-				link: "/genres/Shoujo/"
-			},
-			{
-				name: "Shounen Aï",
-				link: "/genres/Shounen+Ai/"
-			}
-		],
 		currentPage: 1,
 		lastPage: 10
     }),
 	methods:{
 		UpdatePage(newPage) {
 			this.$emit('update-page', newPage);
-		}
+		},
+		
+		getGenres :function () {
+			return this.$store.getters.getGenres
+		},
 	},
 	...mapState(['genres'])
   }
