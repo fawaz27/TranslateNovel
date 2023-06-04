@@ -36,9 +36,6 @@ export default {
 			if(this.$route.params.number_page)
 				this.page = Number(this.$route.params.number_page);
 			await this.$store.dispatch('getNovelsGenre',{genreName:this.$route.params.genre_name,page:this.page});
-			if(this.status == 'Success Get Novels Genre'){
-				console.log(`Good loading genre list ${this.$route.params.genre_name} novel`);		
-			}	
 		} catch (error) {
 			console.error(error);
 		}
@@ -54,9 +51,6 @@ export default {
 			this.setNovels([]);
             try {
 				await this.$store.dispatch('getNovelsGenre',{genreName:this.$route.params.genre_name,page:page});
-				if(this.status == 'Success Get Novels Genre'){
-					console.log(`Good loading genre list ${this.$route.params.genre_name} novel`);		
-				}		
             } catch (error) {
                 console.error(error);
             }

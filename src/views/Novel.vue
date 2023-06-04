@@ -498,7 +498,7 @@ export default {
         try {
 				await this.$store.dispatch('getNovel',{title:this.$route.params.name,page:this.page});
 				if(this.status == 'Success Get Novel'){
-					console.log('Success loading novel');
+					
                     if(this.lengthDescription > 400)
                         this.formatText(this.truncatedtext(this.currentNovel.description));
                     else
@@ -563,14 +563,14 @@ export default {
                     link.click();
                     }   
                     else {
-                        console.log('ERROR');
+                        console.log('ERROR DOWNLOAD');
                     }
                 } catch (error) {
                     console.error(error);
                 }
         },	
 		async UpdatePage(newPage) {
-            console.log(newPage +' novel');
+           
 			this.page = newPage;
             this.setchapterscurrentNovel([]);
             await this.updateListChapters();
@@ -580,7 +580,6 @@ export default {
             try {
                     await this.$store.dispatch('getNovel',{title:this.$route.params.name,page:this.page});
                     if(this.status == 'Success Get Novel'){
-                        console.log('Good loading list chapter novel');
                         this.chaptersConcat=this.chapters_one.concat(this.chapters_two);
             
                     }		

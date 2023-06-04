@@ -144,9 +144,7 @@
 			});
 			try {
 				await this.$store.dispatch('getNovelsList',{listName:listName,page:1});
-				if(this.status == 'Success Get Novels List'){
-					console.log(`Good loading list ${this.$route.params.list_name} novel`);		
-				}		
+					
 			} catch (error) {
 				console.error(error);
 			}

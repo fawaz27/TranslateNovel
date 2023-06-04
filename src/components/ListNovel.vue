@@ -140,9 +140,9 @@
 						</div>
 						<ul class="ul-list3">
 							<li class="l1" v-for="(item,index) in genres" :key="index">
-							<router-link :to="item.link" class="con text-capitalize" :title="item.name" >
+							<router-link :to="`/genres/${item}`" class="con text-capitalize" :title="item" >
 								<span class="glyphicon glyphicon-ok-sign"></span>
-								<font style="vertical-align: inherit;">{{item.name}}</font>
+								<font style="vertical-align: inherit;">{{item}}</font>
 							</router-link>
 							</li>
 						</ul>
@@ -155,6 +155,7 @@
 </template>
   
   <script>
+import { mapState } from 'vuex';
 import Pagination from './Pagination.vue'
   
   export default {
@@ -177,7 +178,7 @@ import Pagination from './Pagination.vue'
     },
   
     data: () => ({
-		genres : [
+		genresList : [
 			{
 				name: "Action",
 				link: "/genres/Action/"
@@ -282,7 +283,8 @@ import Pagination from './Pagination.vue'
 		UpdatePage(newPage) {
 			this.$emit('update-page', newPage);
 		}
-	}
+	},
+	...mapState(['genres'])
   }
   </script>
 

@@ -48,20 +48,7 @@ import NovelsCards from '../components/Home/NovelsCards.vue';
 				this.$store.dispatch('getNovelsLatest'),
 				this.$store.dispatch('getNovelsCompleted'),
 				this.$store.dispatch('getNovelsPopular')
-			]);
-
-			if(this.status == 'Success Get Novels Latest'){
-				console.log('Good loading novels');
-			}
-
-			if(this.statusCompleted == 'Success Get Novels Completed'){
-				console.log('Good loading novels completed');
-			}
-
-			if(this.statusPopular == 'Success Get Novels Popular'){
-				console.log('Good loading novels popular');
-			}
-				
+			]);				
 			} catch (error) {
 				console.error(error);
 			}

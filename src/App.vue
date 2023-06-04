@@ -42,7 +42,17 @@
       ],
     // scrolled: false
     }),
-    mounted() {
+    async mounted() {
+      this.updateTitle();
+      try {
+        await Promise.all([
+          this.$store.dispatch('getGenres')
+        ]);
+        
+				
+			} catch (error) {
+				console.error(error);
+			}
     },
     methods: {
       searchAction(){},
@@ -54,7 +64,7 @@
           this.searchText = '';
       },
       async getNovelsList(listName){
-        this.$route.push({
+        this.$router.push({
               name : 'novelsList',
               params:{list_name: listName} 
         });
@@ -65,11 +75,25 @@
               name : 'genreNovelsList',
               params:{genre_name: genreName} 
         });
+      },
+      updateTitle() {
+        const getTitleFn = this.$route.meta.getTitle;
+        const pageTitle = getTitleFn ? getTitleFn(this.$route) : '';
+        document.title = pageTitle;
       }
     },
     computed:{
-      ...mapState(['user','Theme'])
+      ...mapState(['user','Theme','genres'])
+    },
+    watch:{
+    
+        '$route'() {
+          this.updateTitle();
+		  },
     }
+
+      
+
   })
 
 </script>
@@ -132,13 +156,13 @@
 
             <v-list style="height: 340px;">
               <v-list-item 
-                v-for="(genre,index) in genresList" 
+                v-for="(genre,index) in genres" 
                 :key="index" 
-                :title="genre.title"
-                :value="genre.value" 
+                :title="genre"
+                :value="genre" 
                 style="font-size: 18px;"
                 color="blue-darken-2"
-                @click="getGenreNovelsList(genre.value)"
+                @click="getGenreNovelsList(genre)"
               >
               </v-list-item>
             </v-list>
@@ -216,13 +240,13 @@
         ></v-list-item>
       </template>
       <v-list-item 
-        v-for="(genre,index) in genresList" 
+        v-for="(genre,index) in genres" 
         :key="index" :prepend-icon="genre.icon" 
-        :title="genre.title"
-        :value="genre.value" 
+        :title="genre"
+        :value="genre" 
         style="font-size: 18px;"
         color="blue-darken-2"
-        @click="getGenreNovelsList(genre.value)"
+        @click="getGenreNovelsList(genre)"
       >
       </v-list-item>
     </v-list-group>   
@@ -348,24 +372,40 @@
 		}
 		.search-icon{
 			display: block;
+			margin-left: 175px;
+		}
+		
+    }
+	@media screen and (max-width:520px) {
+		.search-icon{
+			margin-left: 160px;
+		}
+		
+  }
+	@media screen and (max-width:480px) {
+      .search-icon{
+        margin-left: 100px;
+      }
+
+      .logo{
+        margin-left: 5px ;
+      }
+		
+  }
+
+  @media screen and (max-width:430px) {
+		.search-icon{
 			margin-left: 50px;
 		}
 		
-    }
-	@media screen and (max-width:480px) {
+  }
+
+  @media screen and (max-width:400px) {
 		.search-icon{
-			display: block;
-			margin-left: 0px;
+			margin-left: 20px;
 		}
 		
-    }
-	@media screen and (max-width:480px) {
-		.search-icon{
-			display: block;
-			margin-left: -70px;
-		}
-		
-    }
+  }
 
 	@media (min-width: 1920px){
 		.v-container {

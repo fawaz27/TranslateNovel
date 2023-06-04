@@ -193,7 +193,7 @@ export default {
                     chapter:this.$route.params.chapter
                 });
 				if(this.status == 'Success Get Chapter Content'){
-					console.log('Success loading chapter');
+					
                     this.waiting = false;
                     
 				}		
@@ -209,7 +209,7 @@ export default {
                     chapter:chapter
                 });
 				if(this.status == 'Success Get Chapter Content'){
-					console.log('Success loading chapter');
+					
                     this.waiting = false;
 				}		
 			} catch (error) {
@@ -304,7 +304,7 @@ export default {
     .btn-top{
         display: block;
         position: fixed;
-        bottom: 30px;
+        bottom: 120px;
         right: 30px;
         z-index: 999;
         opacity: .6;

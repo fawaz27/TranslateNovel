@@ -129,6 +129,9 @@ export default createStore({
         setNovels : function (state,novels){
             state.novels = novels;
         },
+        setGenres : function (state,genres){
+            state.genres = genres;
+        },
         setNovelsCompleted : function (state,novels){
             state.novelsCompleted = novels;
         },
@@ -280,9 +283,7 @@ export default createStore({
                 const response = await api.get(`novels/${state.sourceName}/genres`);
                 if (response.status == 200) {
                     commit('setStatus','Success Get Genres');
-                    commit('updateNovels',response.data.novels);
-                    commit('setLastPageLatest',response.data.last_page);
-
+                    commit('setGenres',response.data);
                 }
                 else {
                     commit('setStatus','Failure');
@@ -391,7 +392,7 @@ export default createStore({
                 const response = await api.get(`${state.sourceName}/novel-list-chapter?link=${params.name}.html&page=${params.page}`);
                 if (response.status == 200) {
                     commit('setStatus','Success Get List Chapter Novel');
-                    console.log(response.data.chapters);
+                    
                     commit('setchapterscurrentNovel',response.data.chapters);
                     commit('setLastPagecurrentNovel',response.data.last_page);
                 }

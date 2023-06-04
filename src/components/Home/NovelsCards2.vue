@@ -101,10 +101,7 @@ import { mapMutations, mapState } from 'vuex';
     mounted : async function() {
       try {
 				await this.$store.dispatch('getNovelsLatest');
-				if(this.status == 'Success Get Novels Latest'){
-					console.log('Good loading novels');
-          
-				}		
+				
 			} catch (error) {
 				console.error(error);
 			}
@@ -115,10 +112,7 @@ import { mapMutations, mapState } from 'vuex';
           this.setPage(page);
           this.setNovels([]);
           try {
-            await this.$store.dispatch('updateCurrentPage');
-            if(this.status == 'Success Get Novels Latest'){
-              console.log('Good loading novels');
-            }		
+            await this.$store.dispatch('updateCurrentPage');	
           } catch (error) {
             console.error(error);
             setTimeout(() => {

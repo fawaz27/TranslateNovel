@@ -3,7 +3,7 @@
     
   <v-container>
     
-
+	
     <list-novel :last_page="last_page" :novels="novels" :page="page"  @update-page="UpdatePage"></list-novel>
    
   </v-container>
@@ -26,20 +26,19 @@ export default {
 
 	data: () => ({
 		page:1,
+		pageTitle: "Titre par défaut"
 	}),
 
 	async created(){
 		
 	},
 	async mounted(){
+		
 		try {
 			this.setNovels([]);
 			if(this.$route.params.number_page)
 				this.page = Number(this.$route.params.number_page);
 			await this.$store.dispatch('getNovelsList',{listName:this.$route.params.list_name,page:this.page});
-			if(this.status == 'Success Get Novels List'){
-				console.log(`Good loading list ${this.$route.params.list_name} novel`);		
-			}	
 		} catch (error) {
 			console.error(error);
 		}
@@ -55,9 +54,7 @@ export default {
 			this.setNovels([]);
             try {
 				await this.$store.dispatch('getNovelsList',{listName:this.$route.params.list_name,page:page});
-				if(this.status == 'Success Get Novels List'){
-					console.log(`Good loading list ${this.$route.params.list_name} novel`);		
-				}		
+						
             } catch (error) {
                 console.error(error);
             }
