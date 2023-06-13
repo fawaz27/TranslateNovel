@@ -29,16 +29,15 @@ export default {
 	}),
 
 	async created(){
-		
-	},
-	async mounted(){
 		try {
-			if(this.$route.params.number_page)
-				this.page = Number(this.$route.params.number_page);
-			await this.$store.dispatch('getNovelsGenre',{genreName:this.$route.params.genre_name,page:this.page});
+				this.page = Number(this.$route.params.number_page) || 1;
+				await this.$store.dispatch('getNovelsGenre',{genreName:this.$route.params.genre_name,page:this.page});
 		} catch (error) {
 			console.error(error);
 		}
+	},
+	async mounted(){
+		
 	},
 
 	computed:{

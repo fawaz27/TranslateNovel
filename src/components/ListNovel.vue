@@ -1,6 +1,6 @@
 <template>
     
-
+	
         <v-row class="mt-6">
 
 			
@@ -188,7 +188,8 @@ import Pagination from './Pagination.vue'
   
     data: () => ({
 		currentPage: 1,
-		lastPage: 10
+		lastPage: 1,
+		waiting:true
     }),
 	methods:{
 		UpdatePage(newPage) {

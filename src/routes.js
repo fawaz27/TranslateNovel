@@ -127,7 +127,7 @@ const routes = [
         }
     },
     {
-        path:'/search/:number_page?',
+        path:'/search',
         name:'searchNovelsList',
         component:SearchNovelsList,
         exact: true,

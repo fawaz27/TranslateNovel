@@ -23,8 +23,10 @@ else{
 export default createStore({
     state:{
         status : '',
+        searchText:'',
         statusCompleted : '',
         statusPopular : '',
+        statusSearch : '',
         user : userStorage,
         cookies:[],
         Theme:'light',
@@ -40,7 +42,7 @@ export default createStore({
         chaptersCurrentNovel:[],
         chapters_one:[],
         chapters_two:[],
-        last_page:10,
+        last_page:1,
         last_pageLatest:1,
         last_pageCompleted:1,
         last_pagePopular:1,
@@ -101,6 +103,9 @@ export default createStore({
         setPagePopular : function (state,page){
             state.pagePopular = page;
         },
+        setSearchText : function (state,text){
+            state.searchText = text;
+        },
         setchapterscurrentNovel : function (state,chaptersCurrentNovel){
             state.chaptersCurrentNovel = chaptersCurrentNovel;
             state.chaptersCurrentNovel.forEach((it)=>{
@@ -150,6 +155,10 @@ export default createStore({
         setStatusPopular : function (state,status){
             state.statusPopular = status;
         },
+        setStatusSearch : function (state,status){
+            state.statusSearch = status;
+        },
+        
         
         setCookies : function (state,cookies) {
             state.cookies = cookies;
@@ -457,6 +466,25 @@ export default createStore({
                 console.error(error);
                 commit('setStatus','Failure')
             }
-        }
+        },
+        searchNovel: async ({commit,state},params)=>{
+           
+            try {
+                const response = await api.get(`novels/${state.sourceName}/search/keyword?page=${params.page}&keyword=${params.keyword}`);
+                if (response.status == 200) {
+                    commit('setStatusSearch','Success Search Keyword');
+                    commit('updateNovels',response.data.novels);
+                    commit('setLastPage',response.data.last_page);
+                }
+                else {
+                    commit('setStatus','Failure');
+                    
+                }
+              
+            } catch (error) {
+                console.error(error);
+                commit('setStatus','Failure')
+            }
+        },
     }
 })

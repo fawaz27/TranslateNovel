@@ -42,7 +42,7 @@ import NovelsCards from '../components/Home/NovelsCards.vue';
       },
   },
 
-  mounted : async function() {
+  created : async function() {
       try {
 			await Promise.all([
 				this.$store.dispatch('getNovelsLatest'),

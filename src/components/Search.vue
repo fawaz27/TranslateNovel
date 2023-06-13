@@ -7,7 +7,7 @@
         color="blue-darken-2"  
         prepend-inner-icon="mdi-magnify"
         clearable
-        :="searchText"
+        v-model="searchText"
         label="Search"
         density="compact"
         variant="outlined"
@@ -30,11 +30,6 @@
             default: null,
             required: true
         },
-        searchText: { 
-            type: String,
-            default: "",
-            required: true
-        },
         classe: { 
             type: String,
             default: "",
@@ -42,8 +37,24 @@
         }
     },
     data: () => ({
-     
+        searchText: '',
     }),
+    computed: {
+        searchText: {
+            get() {
+                return this.$store.state.searchText;
+            },
+            set(value) {
+                this.$store.commit('setSearchText', value);
+            },
+        },
+    },
+    methods:{
+        updateSearchText(newValue) {
+            this.searchText = newValue;
+            this.$emit('update:search-text', newValue);
+        },
+    }
     
   }
 </script>

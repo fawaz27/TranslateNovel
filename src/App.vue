@@ -16,8 +16,8 @@
     
     data: () => ({
       search: false,
+      textSearch:'',
       drawer:false,
-        searchText: '',
       items: [
             { title: 'Click Me' },
             { title: 'Click Me' },
@@ -55,13 +55,12 @@
 			}
     },
     methods: {
-      searchAction(){},
+      searchAction(){
+        this.$router.push({ name: 'searchNovelsList', query:{keyword:this.textSearch,page:1} })
+      },
 
       pushToHome(){
         return this.$router.push('/');
-      },
-      clear() {
-          this.searchText = '';
       },
       async getNovelsList(listName){
         this.$router.push({
@@ -83,7 +82,7 @@
       }
     },
     computed:{
-      ...mapState(['user','Theme','genres'])
+      ...mapState(['user','Theme','genres','searchText'])
     },
     watch:{
     
@@ -173,7 +172,24 @@
         
       </v-col>
       <v-col cols="6" md="4" class="d-flex justify-center">
-        <search :searchAction="searchAction" :searchText="searchText" :classe="'text-field-search'" ></search>
+        <!-- <search :searchAction="searchAction"  :classe="'text-field-search'" ></search> -->
+        <v-text-field
+          
+          class="text-field-search"
+          color="blue-darken-2"  
+          prepend-inner-icon="mdi-magnify"
+          clearable
+          v-model="textSearch"
+          label="Search"
+          density="compact"
+          variant="outlined"
+          single-line
+          hide-details
+          @click:prepend-inner="searchAction"
+          @keyup.enter="searchAction"
+          >
+        </v-text-field>
+
         <v-btn icon  class="search-icon" @click="search=!search" >
           <v-icon icon="mdi-magnify"></v-icon>
         </v-btn>
@@ -187,8 +203,22 @@
     </v-row>
     <v-row no-gutters v-else>
       <v-col cols="12" class="d-flex justify-end">
-          <search :searchAction="searchAction" :searchText="searchText" :classe="'searchfield'" ></search>
-        
+          <!-- <search :searchAction="searchAction"  :classe="'searchfield'" ></search> -->
+          <v-text-field      
+          class="searchfield"
+          color="blue-darken-2"  
+          prepend-inner-icon="mdi-magnify"
+          clearable
+          v-model="textSearch"
+          label="Search"
+          density="compact"
+          variant="outlined"
+          single-line
+          hide-details
+          @click:prepend-inner="searchAction"
+          @keyup.enter="searchAction"
+          >
+        </v-text-field>
           <v-btn icon class="ml-2" @click="search=!search" >
             <v-icon icon="mdi-close"></v-icon>
           </v-btn>
