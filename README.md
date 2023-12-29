@@ -1,21 +1,64 @@
-# Vue 3 + Vite
 
-This template should help get you started developing with Vue 3 in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
+# TranslateNovel
 
-While this project uses Vue.js, Vite supports many popular JS frameworks. [See all the supported frameworks](https://vitejs.dev/guide/#scaffolding-your-first-vite-project).
+Bienvenue dans le projet TranslateNovel ! Cette application Vue.js a été créée pour interagir avec l'API trans-novel-api, qui permet de récupérer des light novels à partir de différentes sources et de les traduire dans la langue de votre choix.
 
-## Deploy Your Own
+## Installation
 
-Deploy your own Vite project with Vercel.
+1. Clonez le référentiel sur votre machine locale :
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/vercel/vercel/tree/main/examples/vite&template=vite)
+   ```bash
+   git clone https://github.com/fawaz27/TranslateNovel.git
+   ```
 
-_Live Example: https://vite-vue-template.vercel.app_
+2. Accédez au répertoire du projet :
 
-### Deploying From Your Terminal
+   ```bash
+   cd TranslateNovel
+   ```
 
-You can deploy your new Vite project with a single command from your terminal using [Vercel CLI](https://vercel.com/download):
+3. Installez les dépendances :
 
-```shell
-$ vercel
+   ```bash
+   npm install
+   ```
+
+4. Configurez les paramètres dans le fichier `.env` en fonction de vos besoins, notamment l'URL de l'API.
+
+## Utilisation
+
+1. Lancez l'application en mode développement :
+
+   ```bash
+   npm run dev
+   ```
+
+2. Accédez à l'application dans votre navigateur :
+
+   ```http
+   http://localhost:3000
+   ```
+
+   Vous devriez maintenant pouvoir utiliser l'interface pour interagir avec l'API trans-novel-api.
+
+## Déploiement
+
+Pour déployer votre application, utilisez la commande :
+
+```bash
+npm run build
 ```
+
+
+Cette application est déployée sur Vercel. Vous pouvez y accéder en suivant ce lien :
+
+[https://translate-novel.vercel.app](https://translate-novel.vercel.app/)
+
+
+## Configuration
+
+Assurez-vous de configurer correctement le fichier `.env` avec les informations nécessaires, telles que l'URL de votre API.
+
+## Licence
+
+Ce projet est sous licence [MIT](LICENSE).
